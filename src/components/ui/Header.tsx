@@ -10,9 +10,9 @@ export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
         NORTHEAST TOURS
       </Link>
       <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-        <Link href="/tours" className={`${hoverColor} transition-colors`}>JOURNEYS</Link>
+        <Link href="/journeys" className={`${hoverColor} transition-colors`}>JOURNEYS</Link>
         <Link href="/destinations" className={`${hoverColor} transition-colors`}>DESTINATIONS</Link>
-        <Link href="/taxis" className={`${hoverColor} transition-colors`}>PRIVATE TRAVEL</Link>
+        <Link href="/private-travel" className={`${hoverColor} transition-colors`}>PRIVATE TRAVEL</Link>
         <Link href="/contact" className={`${hoverColor} transition-colors`}>CONTACT</Link>
       </nav>
     </header>

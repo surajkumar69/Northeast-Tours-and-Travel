@@ -31,7 +31,7 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link 
-              href="/tours" 
+              href="/journeys" 
               className="bg-white text-stone-900 px-8 py-4 text-sm tracking-widest uppercase font-medium hover:bg-stone-100 transition-colors"
             >
               Explore Journeys
