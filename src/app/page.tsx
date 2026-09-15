@@ -1,20 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Header } from "@/components/ui/Header";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Navigation */}
-      <header className="absolute top-0 w-full z-50 px-6 py-8 flex justify-between items-center text-white">
-        <div className="text-xl font-playfair tracking-wider font-semibold">NORTHEAST TOURS</div>
-        <nav className="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-          <Link href="/tours" className="hover:text-stone-300 transition-colors">JOURNEYS</Link>
-          <Link href="/destinations" className="hover:text-stone-300 transition-colors">DESTINATIONS</Link>
-          <Link href="/taxis" className="hover:text-stone-300 transition-colors">PRIVATE TRAVEL</Link>
-          <Link href="/contact" className="hover:text-stone-300 transition-colors">CONTACT</Link>
-        </nav>
-      </header>
+      <Header variant="light" />
 
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
