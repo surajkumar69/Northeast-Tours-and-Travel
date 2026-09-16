@@ -129,10 +129,10 @@ export function TaxiBookingForm({ vehicleId, vehicleName }: { vehicleId: string,
           </button>
           
           <div className="grid grid-cols-2 gap-4">
-            <a href={`https://wa.me/918787488801?text=Hello, I want to book the ${vehicleName}.`} target="_blank" rel="noopener noreferrer" className="w-full bg-stone-800 hover:bg-stone-700 text-white font-medium uppercase tracking-widest text-xs py-3 rounded-sm transition-colors text-center">
+            <a href={`https://wa.me/917640076969?text=Hello, I want to book the ${vehicleName}.`} target="_blank" rel="noopener noreferrer" className="w-full bg-stone-800 hover:bg-stone-700 text-white font-medium uppercase tracking-widest text-xs py-3 rounded-sm transition-colors text-center">
               WhatsApp
             </a>
-            <a href="tel:+918787488801" className="w-full bg-stone-800 hover:bg-stone-700 text-white font-medium uppercase tracking-widest text-xs py-3 rounded-sm transition-colors text-center">
+            <a href="tel:+917640076969" className="w-full bg-stone-800 hover:bg-stone-700 text-white font-medium uppercase tracking-widest text-xs py-3 rounded-sm transition-colors text-center">
               Call Now
             </a>
           </div>

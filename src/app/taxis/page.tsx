@@ -12,7 +12,7 @@ export default async function TaxisPage() {
 
   const getWhatsAppLink = (vehicleName: string) => {
     const message = `Hello, I am interested in booking the ${vehicleName} for my Northeast trip. Please share availability and pricing.`;
-    return `https://wa.me/918787488801?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/917640076969?text=${encodeURIComponent(message)}`;
   };
 
   return (

@@ -169,7 +169,7 @@ export default async function PackageDetail({ params }: { params: Promise<{ slug
             </div>
             
             <a 
-              href={`https://wa.me/918787488801?text=Hello, I am interested in booking the ${pkg.title} package.`}
+              href={`https://wa.me/917640076969?text=Hello, I am interested in booking the ${pkg.title} package.`}
               target="_blank"
               rel="noreferrer"
               className="w-full block text-center border border-green-600/50 text-green-500 hover:bg-green-600/10 font-medium tracking-widest uppercase py-4 transition-colors mt-4"

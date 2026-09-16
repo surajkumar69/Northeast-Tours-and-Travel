@@ -59,7 +59,7 @@ const defaultNotes = [
 ];
 
 const defaultBookingInfo = {
-  phone: '+918787488801',
+  phone: '+917640076969',
   email: 'thedivinetravel01@gmail.com',
   whatsappMessage: (pkgName: string, duration: string) => 
     `Hello, I am interested in booking the ${pkgName} (${duration}) package. Please provide more details.`

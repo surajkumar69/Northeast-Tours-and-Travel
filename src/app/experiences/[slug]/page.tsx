@@ -71,7 +71,7 @@ export default async function ExperienceDetail({ params }: { params: Promise<{ s
             <p className="text-stone-400 mb-6 text-sm">Contact us to add {exp.title} to your itinerary.</p>
             
             <a 
-              href={`https://wa.me/918787488801?text=Hello, I am interested in the ${exp.title} experience.`}
+              href={`https://wa.me/917640076969?text=Hello, I am interested in the ${exp.title} experience.`}
               target="_blank"
               rel="noreferrer"
               className="w-full block text-center bg-gold-600 hover:bg-gold-500 text-white font-medium tracking-widest uppercase py-4 transition-colors"
