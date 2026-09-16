@@ -42,7 +42,7 @@ export default async function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {/* Asymmetric / Masonry-style Grid using standard cols but different heights */}
           <Link href="/destinations/meghalaya" className="group relative block h-[400px] rounded-2xl overflow-hidden">
             <Image src="/images/meghalaya_dawki_river_1789460337488.jpg" alt="Meghalaya" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
@@ -71,15 +71,7 @@ export default async function Home() {
             </div>
           </Link>
 
-          <Link href="/destinations/nagaland" className="group relative block h-[400px] rounded-2xl overflow-hidden lg:translate-y-8">
-            <Image src="https://images.unsplash.com/photo-1596766487195-2cc021b2b800?q=80&w=1000&auto=format&fit=crop" alt="Nagaland" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-6 left-6">
-              <h3 className="font-playfair text-2xl text-white">Nagaland</h3>
-              <p className="text-gold-400 text-xs tracking-widest uppercase mt-1 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">Explore</p>
-            </div>
-          </Link>
-        </div>
+          </div>
       </section>
 
       {/* 3. FEATURED TOUR PACKAGES */}
