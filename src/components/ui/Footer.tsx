@@ -40,6 +40,7 @@ export function Footer() {
             <li><Link href="#" className="hover:text-white transition-colors">Booking Policy</Link></li>
             <li><Link href="#" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
             <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+            <li><Link href="/admin/login" className="hover:text-white transition-colors">Admin Login</Link></li>
           </ul>
         </div>
 
@@ -65,7 +66,7 @@ export function Footer() {
       </div>
       
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-stone-900 text-center text-xs font-light text-stone-600">
-        &copy; {new Date().getFullYear()} Northeast Tours & Travel. All rights reserved. <span className="mx-2">|</span> <Link href="/admin/login" className="hover:text-gold-400 transition-colors">Admin Login</Link>
+        &copy; {new Date().getFullYear()} Northeast Tours & Travel. All rights reserved.
       </div>
     </footer>
   );
