@@ -2,10 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/ui/Header";
 import prisma from "@/lib/prisma";
-import { Users, Briefcase, Snowflake, CheckCircle } from "lucide-react";
+import { Users, Briefcase, Snowflake, CheckCircle, MessageCircle } from "lucide-react";
 
 export default async function TaxisPage() {
-  const taxis = await prisma.taxiVehicle.findMany();
+  const taxis = await prisma.taxiVehicle.findMany({
+    where: { isActive: true },
+    orderBy: { createdAt: 'asc' }
+  });
+
+  const getWhatsAppLink = (vehicleName: string) => {
+    const message = `Hello, I am interested in booking the ${vehicleName} for my Northeast trip. Please share availability and pricing.`;
+    return `https://wa.me/918787488801?text=${encodeURIComponent(message)}`;
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-900 text-stone-200">
@@ -39,12 +47,12 @@ export default async function TaxisPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {taxis.map(taxi => (
             <div key={taxi.id} className="group flex flex-col border border-stone-800 bg-stone-900/80 hover:bg-stone-800/80 hover:shadow-2xl hover:shadow-gold-900/10 transition-all duration-500 rounded-sm overflow-hidden">
-              <div className="relative h-72 w-full overflow-hidden bg-stone-950">
+              <div className="relative h-72 w-full overflow-hidden bg-stone-950/50 flex items-center justify-center p-2">
                 <Image 
                   src={taxi.mainImage || "/images/swift_dzire_main.jpg"}
                   alt={taxi.name}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                  className="object-contain p-4 group-hover:scale-110 transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute top-4 right-4 bg-gold-500 text-stone-900 text-xs font-bold px-3 py-1 uppercase tracking-widest rounded-sm shadow-lg">
                   {taxi.type}
@@ -61,6 +69,12 @@ export default async function TaxisPage() {
                     <span className="flex items-center"><Briefcase className="w-4 h-4 mr-2 text-gold-400" /> {taxi.luggageCapacity}</span>
                   )}
                 </div>
+
+                {taxi.shortDescription && (
+                  <p className="text-stone-400 text-sm mb-6 line-clamp-2">
+                    {taxi.shortDescription}
+                  </p>
+                )}
 
                 <div className="space-y-2 mb-8 flex-1">
                   {taxi.features?.split(',').slice(0, 3).map((feature, idx) => (
@@ -84,9 +98,9 @@ export default async function TaxisPage() {
                   <Link href={`/taxis/${taxi.slug}`} className="block w-full text-center border border-stone-600 hover:border-gold-400 text-stone-300 hover:text-gold-400 py-3 tracking-widest uppercase text-xs font-semibold transition-colors">
                     View Details
                   </Link>
-                  <Link href={`/taxis/${taxi.slug}#booking`} className="block w-full text-center bg-gold-500 hover:bg-gold-400 text-stone-950 py-3 tracking-widest uppercase text-xs font-bold transition-colors">
-                    Book Now
-                  </Link>
+                  <a href={getWhatsAppLink(taxi.name)} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full bg-green-600 hover:bg-green-500 text-white py-3 tracking-widest uppercase text-xs font-bold transition-colors">
+                    <MessageCircle className="w-4 h-4 mr-2" /> Book Now
+                  </a>
                 </div>
               </div>
             </div>

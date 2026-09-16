@@ -20,12 +20,12 @@ export function TaxiGallery({ mainImage, images }: TaxiGalleryProps) {
 
   return (
     <div className="w-full">
-      <div className="relative h-[400px] md:h-[600px] w-full mb-4 bg-stone-900 overflow-hidden cursor-pointer rounded-sm" onClick={() => setIsFullscreen(true)}>
+      <div className="relative h-[400px] md:h-[600px] w-full mb-4 bg-stone-900/50 overflow-hidden cursor-pointer rounded-sm flex items-center justify-center p-4" onClick={() => setIsFullscreen(true)}>
         <Image 
           src={allImages[currentIndex]}
           alt="Taxi View"
           fill
-          className="object-cover transition-transform duration-700 hover:scale-105"
+          className="object-contain p-4 transition-transform duration-700 hover:scale-105"
         />
         
         {allImages.length > 1 && (

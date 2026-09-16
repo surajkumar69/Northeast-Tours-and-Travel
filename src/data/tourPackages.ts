@@ -139,12 +139,12 @@ export const tourPackages: TourPackage[] = [
     category: 'Assam',
     shortDescription: 'Spot the majestic one-horned rhinoceros and diverse wildlife in this UNESCO World Heritage site.',
     description: 'An unforgettable wildlife safari experience in the world-renowned Kaziranga National Park. Enjoy thrilling elephant and jeep safaris while spotting rhinos, tigers, wild water buffaloes, and exotic bird species.',
-    coverImage: '/images/kaziranga_national_park.jpg',
+    coverImage: '/images/ai-generated/kaziranga_rhino_ai.jpg',
     gallery: [
-      '/images/kaziranga_national_park.jpg',
-      '/images/kaziranga_national_park.jpg',
-      '/images/kaziranga_national_park.jpg',
-      '/images/assam_tea_estate_1789460102115.jpg'
+      '/images/ai-generated/kaziranga_rhino_ai.jpg',
+      '/images/assam_majuli_river_1789460244378.jpg',
+      '/images/assam_tea_estate_1789460102115.jpg',
+      '/images/assam_culture_1789460260883.jpg'
     ],
     price: '₹12,500/-',
     priceLabel: 'for 2 persons',

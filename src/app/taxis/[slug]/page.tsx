@@ -113,7 +113,25 @@ export default async function TaxiDetailPage({ params }: { params: Promise<{ slu
           </div>
 
           <div className="lg:col-span-1" id="booking">
-            <div className="sticky top-32">
+            <div className="sticky top-32 space-y-6">
+              <a 
+                href={`https://wa.me/918787488801?text=${encodeURIComponent(`Hello, I am interested in booking the ${taxi.name} for my Northeast trip. Please share availability and pricing.`)}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center bg-[#25D366] hover:bg-[#128C7E] text-white py-4 px-6 text-sm font-bold uppercase tracking-widest rounded-sm transition-colors shadow-lg"
+              >
+                Book via WhatsApp
+              </a>
+              
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-stone-800"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-dark-900 text-stone-500">OR ENQUIRE ONLINE</span>
+                </div>
+              </div>
+
               <TaxiBookingForm vehicleId={taxi.id} vehicleName={taxi.name} />
             </div>
           </div>

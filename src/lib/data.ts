@@ -1,4 +1,4 @@
-﻿export const destinations = [
+export const destinations = [
   {
     id: "dest-1",
     slug: "assam",
@@ -43,20 +43,20 @@
       "https://upload.wikimedia.org/wikipedia/commons/3/3e/Tawang_Monastery_view.jpg"
     ]
   },
-  {
-    id: "dest-4",
-    slug: "kaziranga-national-park",
-    name: "Kaziranga National Park",
-    state: "Assam",
-    description: "Home to the one-horned rhinoceros and diverse wildlife.",
-    mainImage: "/images/kaziranga_national_park.jpg",
-    images: [
-      "/images/kaziranga_national_park.jpg",
-      "/images/kaziranga_national_park.jpg",
-      "/images/kaziranga_national_park.jpg",
-      "/images/assam_tea_estate_1789460102115.jpg"
-    ]
-  }
+    {
+      id: "dest-4",
+      slug: "kaziranga-national-park",
+      name: "Kaziranga National Park",
+      state: "Assam",
+      description: "Home to the one-horned rhinoceros and diverse wildlife.",
+      mainImage: "/images/ai-generated/kaziranga_rhino_ai.jpg",
+      images: [
+        "/images/ai-generated/kaziranga_rhino_ai.jpg",
+        "/images/assam_majuli_river_1789460244378.jpg",
+        "/images/assam_temple_1789460276376.jpg",
+        "/images/assam_tea_estate_1789460102115.jpg"
+      ]
+    }
 ];
 
 export const packages = []; // Deprecated: we use tourPackages from src/data/tourPackages.ts now

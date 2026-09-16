@@ -83,8 +83,8 @@ export const MOCK_TOURS: Tour[] = [
     gallery_images: [
       'https://images.unsplash.com/photo-1616012480717-fd9867059ca0?q=80&w=2670&auto=format&fit=crop',
       '/images/kaziranga_national_park.jpg',
-      '/images/kaziranga_national_park.jpg',
-      '/images/kaziranga_national_park.jpg'
+      '/images/assam_majuli_river_1789460244378.jpg',
+      '/images/assam_tea_estate_1789460102115.jpg'
     ],
     location: 'Kaziranga National Park',
     duration: '2 night 3 days',

@@ -20,10 +20,10 @@ export default async function HomePage() {
     },
     {
       id: 'dest-3',
-      name: 'Assam',
+      name: 'Kaziranga National Park',
       shortDescription: 'Witness the one-horned rhinoceros in Kaziranga and lush tea grasslands.',
-      coverImage: '/images/kaziranga_national_park.jpg',
-      slug: 'assam'
+      coverImage: '/images/ai-generated/kaziranga_rhino_ai.jpg',
+      slug: 'kaziranga-national-park'
     },
     {
       id: 'dest-4',

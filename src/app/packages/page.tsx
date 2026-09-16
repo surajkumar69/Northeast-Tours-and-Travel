@@ -51,11 +51,15 @@ export default async function PackagesPage() {
                 <p className="text-stone-400 text-sm mb-6 flex-1">{pkg.shortDescription}</p>
                 
                 <div className="flex justify-between items-center mb-6 pt-4 border-t border-stone-800">
-                  <div className="flex items-center text-stone-400 text-sm">
-                    <Clock className="w-4 h-4 mr-2" /> {pkg.duration}
+                    <div className="flex items-center text-stone-400 text-sm">
+                      <Clock className="w-4 h-4 mr-2" /> {pkg.duration}
+                    </div>
+                    <div className="text-right flex flex-col items-end">
+                      <div className="text-[10px] text-stone-500 uppercase tracking-widest leading-tight">Starting from</div>
+                      <div className="text-lg font-playfair text-gold-400 leading-tight">{pkg.price}</div>
+                      {pkg.priceLabel && <div className="text-[10px] text-stone-500 uppercase tracking-widest leading-tight">{pkg.priceLabel}</div>}
+                    </div>
                   </div>
-                  <div className="text-lg font-playfair text-gold-400">{pkg.price}</div>
-                </div>
                 
                 <Link href={`/packages/${pkg.slug}`} className="block w-full text-center border border-gold-600/50 hover:bg-gold-500 hover:border-gold-500 text-white py-3 tracking-widest uppercase text-sm transition-colors mt-auto">
                   View Details

@@ -58,7 +58,7 @@ export function Footer() {
             </li>
             <li className="flex items-start">
               <MapPin size={16} className="mr-3 mt-1 text-stone-500 shrink-0" />
-              <span>Guwahati, Assam, India</span>
+              <span className="leading-relaxed">A2, Ground Floor, Royal Residency, SOS Village Road, Opp. Terminal-2, Lokpriya Gopinath Bordoloi International Airport, Guwahati-781015, Assam.</span>
             </li>
           </ul>
         </div>

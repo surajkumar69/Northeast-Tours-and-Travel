@@ -32,7 +32,9 @@ export default function ContactPage() {
               <MapPin className="w-6 h-6 text-gold-500 mr-4 shrink-0" />
               <div>
                 <h3 className="text-white font-medium mb-1 tracking-widest uppercase text-sm">Visit Us</h3>
-                <p className="text-stone-400">Rynjah Main Rd, R. R. Colony<br/>Rynjah Shillong, Meghalaya - 793006</p>
+                <p className="text-stone-400 leading-relaxed">
+                  A2, Ground Floor, Royal Residency, SOS Village Road, Opp. Terminal-2, Lokpriya Gopinath Bordoloi International Airport, Guwahati-781015, Assam.
+                </p>
               </div>
             </div>
           </div>

@@ -116,7 +116,10 @@ model TaxiVehicle {
   pricePerDay      String?
   pricePerKm       String?
   outstationRate   String?
+  localPackageRate String?
   airportTransfer  String?
+  
+  isActive         Boolean  @default(true)
   
   mainImage        String
   gallery          TaxiImage[]
@@ -153,6 +156,8 @@ model TempoTraveller {
   outstationRate   String?
   localPackageRate String?
   airportTransfer  String?
+  
+  isActive         Boolean  @default(true)
   
   mainImage        String
   gallery          TempoImage[]

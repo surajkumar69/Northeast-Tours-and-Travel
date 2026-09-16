@@ -96,38 +96,7 @@ export function AnimatedHomepage({
         </div>
       </section>
 
-      {/* 2. WHY CHOOSE US (Dark Green Accent Background) */}
-      <section className="py-24 bg-[#0a1a14] text-white">
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="max-w-7xl mx-auto px-6 text-center"
-        >
-          <motion.h2 variants={fadeUp} className="font-playfair text-3xl md:text-5xl mb-16 text-white">
-            Why Journey With Us
-          </motion.h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              { icon: Compass, title: "Local Expertise", desc: "Unmatched knowledge of hidden trails and untouched destinations across the Northeast." },
-              { icon: ShieldCheck, title: "Premium Comfort", desc: "Travel safely in our modern, well-maintained fleet with experienced professional drivers." },
-              { icon: Users, title: "Tailored Experiences", desc: "Bespoke itineraries designed carefully to match your pace, interests, and comfort." }
-            ].map((feature, idx) => (
-              <motion.div key={idx} variants={fadeUp} className="flex flex-col items-center group">
-                <div className="w-20 h-20 rounded-full bg-[#0d221b] border border-gold-500/20 flex items-center justify-center mb-6 text-gold-500 group-hover:scale-110 group-hover:border-gold-500/50 transition-all duration-500">
-                  <feature.icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-xl font-playfair mb-4 text-stone-100">{feature.title}</h3>
-                <p className="text-stone-400 text-sm font-light leading-relaxed max-w-sm">{feature.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </section>
-
-      {/* 3. POPULAR DESTINATIONS */}
+      {/* 2. POPULAR DESTINATIONS */}
       <section className="py-24 md:py-32 bg-stone-50">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
@@ -176,7 +145,7 @@ export function AnimatedHomepage({
         </div>
       </section>
 
-      {/* 4. FEATURED TOUR PACKAGES */}
+      {/* 3. FEATURED TOUR PACKAGES */}
       <section className="py-24 md:py-32 bg-[#06100c] text-stone-200 relative">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <motion.div 
@@ -220,6 +189,7 @@ export function AnimatedHomepage({
                     <div>
                       <p className="text-[10px] text-stone-500 uppercase tracking-widest">Starting from</p>
                       <p className="text-lg font-bold text-white">{pkg.price}</p>
+                      {pkg.priceLabel && <p className="text-[10px] text-stone-500 uppercase tracking-widest leading-none">{pkg.priceLabel}</p>}
                     </div>
                     <Link href={`/packages/${pkg.slug}`} className="text-gold-400 hover:text-white text-xs uppercase tracking-widest font-semibold transition-colors flex items-center">
                       View Details <ArrowRight className="w-4 h-4 ml-1" />
@@ -232,7 +202,7 @@ export function AnimatedHomepage({
         </div>
       </section>
 
-      {/* 5. NORTHEAST CULTURE EXPERIENCE */}
+      {/* 4. NORTHEAST CULTURE EXPERIENCE */}
       <section className="py-24 md:py-32 bg-stone-100 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -269,7 +239,7 @@ export function AnimatedHomepage({
         </div>
       </section>
 
-      {/* 6. OUR FLEET */}
+      {/* 5. OUR FLEET */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
@@ -304,6 +274,37 @@ export function AnimatedHomepage({
             ))}
           </div>
         </div>
+      </section>
+
+      {/* 6. WHY CHOOSE US (Dark Green Accent Background) */}
+      <section className="py-24 bg-[#0a1a14] text-white">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="max-w-7xl mx-auto px-6 text-center"
+        >
+          <motion.h2 variants={fadeUp} className="font-playfair text-3xl md:text-5xl mb-16 text-white">
+            Why Journey With Us
+          </motion.h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { icon: Compass, title: "Local Expertise", desc: "Unmatched knowledge of hidden trails and untouched destinations across the Northeast." },
+              { icon: ShieldCheck, title: "Premium Comfort", desc: "Travel safely in our modern, well-maintained fleet with experienced professional drivers." },
+              { icon: Users, title: "Tailored Experiences", desc: "Bespoke itineraries designed carefully to match your pace, interests, and comfort." }
+            ].map((feature, idx) => (
+              <motion.div key={idx} variants={fadeUp} className="flex flex-col items-center group">
+                <div className="w-20 h-20 rounded-full bg-[#0d221b] border border-gold-500/20 flex items-center justify-center mb-6 text-gold-500 group-hover:scale-110 group-hover:border-gold-500/50 transition-all duration-500">
+                  <feature.icon className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-playfair mb-4 text-stone-100">{feature.title}</h3>
+                <p className="text-stone-400 text-sm font-light leading-relaxed max-w-sm">{feature.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </section>
 
       {/* 7. CALL TO ACTION */}

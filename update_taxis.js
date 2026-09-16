@@ -2,20 +2,20 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function updateTaxis() {
-  await prisma.taxiVehicle.update({
-    where: { slug: 'innova-crysta' },
-    data: {
-      mainImage: '/images/book_taxi_ai.jpg'
-    }
-  });
+  const taxis = await prisma.taxiVehicle.findMany();
+  console.log('Current taxis:', taxis.map(t => ({ id: t.id, name: t.name })));
 
-  await prisma.taxiVehicle.update({
-    where: { slug: 'swift-dzire' },
-    data: {
-      mainImage: '/images/ai-generated/ertiga_taxi_2_1789535616752.jpg'
-    }
-  });
-  console.log("Updated taxi images.");
+  const dzire = taxis.find(t => t.name.includes('Dzire'));
+  if (dzire) {
+    await prisma.taxiVehicle.update({
+      where: { id: dzire.id },
+      data: { 
+        name: 'Swift Dzire',
+        slug: 'swift-dzire' 
+      }
+    });
+    console.log('Updated Swift Dzire.');
+  }
 }
 
-updateTaxis().catch(console.error).finally(() => prisma.$disconnect());
+updateTaxis().finally(() => prisma.$disconnect());
