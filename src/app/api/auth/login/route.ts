@@ -3,6 +3,9 @@ import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma';
 import { SignJWT } from 'jose';
 
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 const SECRET_KEY = new TextEncoder().encode(
   process.env.NEXTAUTH_SECRET || 'super_secret_key_123_456_789_012_345_678_901_234_567_890'
 );
