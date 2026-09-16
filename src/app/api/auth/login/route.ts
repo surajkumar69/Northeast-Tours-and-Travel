@@ -6,38 +6,54 @@ import { SignJWT } from 'jose';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-const SECRET_KEY = new TextEncoder().encode(
-  process.env.NEXTAUTH_SECRET || 'super_secret_key_123_456_789_012_345_678_901_234_567_890'
-);
-
 export async function POST(request: Request) {
   try {
-    let { email, password } = await request.json();
+    // 1. STRICT ENVIRONMENT VALIDATION FOR PRODUCTION
+    if (process.env.NODE_ENV === 'production') {
+      if (!process.env.NEXTAUTH_SECRET) {
+        console.error("CRITICAL ERROR: NEXTAUTH_SECRET is missing in production.");
+        return NextResponse.json({ error: 'Server misconfiguration' }, { status: 500 });
+      }
+      if (!process.env.DATABASE_URL) {
+        console.error("CRITICAL ERROR: DATABASE_URL is missing in production.");
+        return NextResponse.json({ error: 'Server misconfiguration' }, { status: 500 });
+      }
+    }
 
+    const secretString = process.env.NEXTAUTH_SECRET || 'super_secret_key_123_456_789_012_345_678_901_234_567_890';
+    const SECRET_KEY = new TextEncoder().encode(secretString);
+
+    let { email, password } = await request.json();
     email = email?.trim().toLowerCase();
 
     if (!email || !password) {
       return NextResponse.json({ error: 'Missing credentials' }, { status: 400 });
     }
 
-    
-    // --- AUTO-BOOTSTRAP ADMIN ---
-    // If no admins exist in the database, create a default one to prevent lockout.
+    // 2. ENVIRONMENT-CONTROLLED SAFE BOOTSTRAP
     const adminCount = await prisma.adminUser.count();
+    
     if (adminCount === 0) {
-      const defaultPasswordHash = await bcrypt.hash('Admin@123', 10);
-      await prisma.adminUser.create({
-        data: {
-          email: 'admin@northeasttours.com',
-          passwordHash: defaultPasswordHash,
-          name: 'Super Admin',
-          role: 'SUPER_ADMIN'
-        }
-      });
-      console.log('Bootstrapped default admin user: admin@northeasttours.com / Admin@123');
-    }
-    // ----------------------------
+      const initialEmail = process.env.INITIAL_ADMIN_EMAIL?.trim().toLowerCase();
+      const initialPassword = process.env.INITIAL_ADMIN_PASSWORD;
 
+      if (initialEmail && initialPassword) {
+        const defaultPasswordHash = await bcrypt.hash(initialPassword, 10);
+        await prisma.adminUser.create({
+          data: {
+            email: initialEmail,
+            passwordHash: defaultPasswordHash,
+            name: 'Super Admin',
+            role: 'SUPER_ADMIN'
+          }
+        });
+        console.log(`Bootstrapped admin user using environment variables: ${initialEmail}`);
+      } else {
+        console.log('No admin users exist and INITIAL_ADMIN_EMAIL/PASSWORD env vars are not set.');
+      }
+    }
+
+    // 3. AUTHENTICATION LOGIC
     const user = await prisma.adminUser.findUnique({
       where: { email },
     });
@@ -51,7 +67,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
     }
 
-    // Create JWT
+    // 4. JWT GENERATION
     const token = await new SignJWT({ sub: user.id, email: user.email, role: user.role })
       .setProtectedHeader({ alg: 'HS256' })
       .setIssuedAt()
