@@ -1,0 +1,321 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Destination {
+  id               String        @id @default(uuid())
+  slug             String        @unique
+  name             String
+  state            String
+  shortDescription String
+  description      String?
+  heroImage        String?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  
+  images           DestinationImage[]
+  packages         TourPackage[]
+}
+
+model DestinationImage {
+  id            String       @id @default(uuid())
+  url           String
+  altText       String?
+  sortOrder     Int          @default(0)
+  destinationId String
+  destination   Destination  @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+}
+
+model TourPackage {
+  id               String        @id @default(uuid())
+  slug             String        @unique
+  title            String
+  duration         String
+  price            String
+  priceLabel       String
+  startingPoint    String?
+  shortDescription String
+  description      String?
+  coverImage       String?
+  hotels           String?
+  transportation   String?
+  isActive         Boolean       @default(true)
+  sortOrder        Int           @default(0)
+  
+  destinationId    String?
+  destination      Destination?  @relation(fields: [destinationId], references: [id])
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  
+  images           PackageImage[]
+  itinerary        ItineraryDay[]
+  highlights       PackageHighlight[]
+  inclusions       PackageInclusion[]
+  exclusions       PackageExclusion[]
+  bookings         Booking[]
+}
+
+model PackageImage {
+  id          String      @id @default(uuid())
+  url         String
+  altText     String?
+  sortOrder   Int         @default(0)
+  packageId   String
+  package     TourPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+}
+
+model ItineraryDay {
+  id          String      @id @default(uuid())
+  day         Int
+  title       String
+  description String
+  packageId   String
+  package     TourPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+}
+
+model PackageHighlight {
+  id          String      @id @default(uuid())
+  text        String
+  packageId   String
+  package     TourPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+}
+
+model PackageInclusion {
+  id          String      @id @default(uuid())
+  text        String
+  packageId   String
+  package     TourPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+}
+
+model PackageExclusion {
+  id          String      @id @default(uuid())
+  text        String
+  packageId   String
+  package     TourPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+}
+
+model TaxiVehicle {
+  id               String   @id @default(uuid())
+  slug             String   @unique
+  name             String
+  type             String
+  model            String
+  seatingCapacity  String
+  acAvailable      Boolean  @default(true)
+  luggageCapacity  String?
+  shortDescription String?
+  description      String?
+  features         String?
+  facilities       String?
+  
+  pricePerDay      String?
+  pricePerKm       String?
+  outstationRate   String?
+  airportTransfer  String?
+  
+  mainImage        String
+  gallery          TaxiImage[]
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  bookings         Booking[]
+}
+
+model TaxiImage {
+  id          String      @id @default(uuid())
+  url         String
+  altText     String?
+  sortOrder   Int         @default(0)
+  taxiId      String
+  taxi        TaxiVehicle @relation(fields: [taxiId], references: [id], onDelete: Cascade)
+}
+
+model TempoTraveller {
+  id               String   @id @default(uuid())
+  slug             String   @unique
+  name             String
+  type             String
+  seatingCapacity  String
+  acAvailable      Boolean  @default(true)
+  luggageCapacity  String?
+  shortDescription String?
+  description      String?
+  features         String?
+  facilities       String?
+  
+  pricePerDay      String?
+  pricePerKm       String?
+  outstationRate   String?
+  localPackageRate String?
+  airportTransfer  String?
+  
+  mainImage        String
+  gallery          TempoImage[]
+  
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  bookings         Booking[]
+}
+
+model TempoImage {
+  id          String      @id @default(uuid())
+  url         String
+  altText     String?
+  sortOrder   Int         @default(0)
+  tempoId     String
+  tempo       TempoTraveller @relation(fields: [tempoId], references: [id], onDelete: Cascade)
+}
+
+model Booking {
+  id               String   @id @default(uuid())
+  fullName         String
+  phone            String
+  email            String
+  travelDate       String
+  returnDate       String?
+  adults           Int
+  children         Int
+  specialReq       String?
+  status           String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED
+  paymentId        String?  // Razorpay Payment ID
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  packageId        String?
+  package          TourPackage? @relation(fields: [packageId], references: [id])
+  
+  taxiId           String?
+  taxi             TaxiVehicle? @relation(fields: [taxiId], references: [id])
+  
+  tempoId          String?
+  tempo            TempoTraveller? @relation(fields: [tempoId], references: [id])
+}
+
+model Enquiry {
+  id               String   @id @default(uuid())
+  fullName         String
+  phone            String
+  email            String
+  message          String
+  status           String   @default("UNREAD") // UNREAD, READ, RESOLVED
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+
+model AdminUser {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SiteSettings {
+  id           String   @id @default(uuid())
+  companyName  String   @default("Majestic Northeast Tours and Travel")
+  tagline      String   @default("The Soul of Incredible Northeast")
+  phone        String   @default("+918787488801")
+  whatsapp     String   @default("+918787488801")
+  email        String   @default("thedivinetravel01@gmail.com")
+  address      String?
+  facebookUrl  String?
+  instagramUrl String?
+  youtubeUrl   String?
+  twitterUrl   String?
+  updatedAt    DateTime @updatedAt
+}
+
+model HeroSlide {
+  id          String   @id @default(uuid())
+  title       String
+  location    String
+  description String?
+  image       String
+  ctaText     String?
+  ctaLink     String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Experience {
+  id               String   @id @default(uuid())
+  slug             String   @unique
+  title            String
+  category         String?
+  shortDescription String?
+  fullDescription  String?
+  coverImage       String
+  isActive         Boolean  @default(true)
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  gallery          ExperienceImage[]
+}
+
+model ExperienceImage {
+  id           String      @id @default(uuid())
+  url          String
+  altText      String?
+  sortOrder    Int         @default(0)
+  experienceId String
+  experience   Experience  @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+}
+
+model Testimonial {
+  id           String   @id @default(uuid())
+  customerName String
+  location     String?
+  rating       Int      @default(5)
+  review       String
+  travelDate   String?
+  image        String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model HomepageGalleryImage {
+  id           String   @id @default(uuid())
+  url          String
+  altText      String?
+  isActive     Boolean  @default(true)
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model Hotel {
+  id           String   @id @default(uuid())
+  name         String
+  destination  String
+  category     String   @default("Standard") // Standard, Deluxe, Premium
+  description  String?
+  address      String?
+  contact      String?
+  images       String?  // comma separated or JSON string
+  amenities    String?  // comma separated
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model HomepageSection {
+  id           String   @id @default(uuid())
+  sectionKey   String   @unique // e.g. "hero", "explore", "packages", "experiences"
+  title        String?
+  subtitle     String?
+  description  String?
+  isActive     Boolean  @default(true)
+  displayOrder Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}

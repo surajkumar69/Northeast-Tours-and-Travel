@@ -1,188 +1,158 @@
-'use client'
+"use client";
 
-import { saveTour } from '@/app/admin/(dashboard)/tours/actions'
-import { useState } from 'react'
-import { ImageUpload } from '@/components/ui/ImageUpload'
+import { useState } from "react";
+import { createTourPackage, updateTourPackage } from "@/lib/actions/packages";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-export function TourForm({ tour = null }: { tour?: any }) {
-  const [loading, setLoading] = useState(false)
-  const [mainImage, setMainImage] = useState(tour?.main_image || '')
+export function TourForm({ tour, destinations }: { tour?: any, destinations: any[] }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [imagePreview, setImagePreview] = useState(tour?.coverImage || "");
+  const [uploading, setUploading] = useState(false);
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await fetch("/api/upload", { method: "POST", body: formData });
+      const data = await res.json();
+      if (data.url) setImagePreview(data.url);
+      else alert(data.error || "Upload failed");
+    } catch (err) {
+      alert("An error occurred during upload");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    formData.set("coverImage", imagePreview);
+
+    try {
+      if (tour?.id) {
+        await updateTourPackage(tour.id, formData);
+      } else {
+        await createTourPackage(formData);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred saving the package.");
+      setLoading(false);
+    }
+  };
 
   return (
-    <form 
-      action={async (formData) => {
-        setLoading(true)
-        try {
-          await saveTour(formData, tour?.id)
-        } catch (err) {
-          console.error(err)
-          alert('Failed to save tour')
-          setLoading(false)
-        }
-      }}
-      className="space-y-8 divide-y divide-gray-200"
-    >
-      <div className="space-y-8 divide-y divide-gray-200">
-        <div>
+    <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-stone-200 p-8 space-y-6">
+      
+      <div className="space-y-4 border-b border-stone-200 pb-6">
+        <h3 className="text-lg font-semibold text-stone-800">Basic Information</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
-              {tour ? 'Edit Tour' : 'Create New Tour'}
-            </h3>
-            <p className="mt-1 text-sm text-gray-500">
-              Fill in the information below to {tour ? 'update this' : 'create a new'} tour package.
-            </p>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Title</label>
+            <input type="text" name="title" defaultValue={tour?.title} required className="w-full border border-stone-300 rounded-md px-4 py-2" />
           </div>
-
-          <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-              <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                Tour Title
-              </label>
-              <div className="mt-1">
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  required
-                  defaultValue={tour?.title}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm p-2 border"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-3">
-              <label htmlFor="slug" className="block text-sm font-medium text-gray-700">
-                Slug (URL-friendly)
-              </label>
-              <div className="mt-1">
-                <input
-                  type="text"
-                  name="slug"
-                  id="slug"
-                  required
-                  defaultValue={tour?.slug}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm p-2 border"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="duration_days" className="block text-sm font-medium text-gray-700">
-                Days
-              </label>
-              <div className="mt-1">
-                <input
-                  type="number"
-                  name="duration_days"
-                  id="duration_days"
-                  required
-                  defaultValue={tour?.duration_days}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm p-2 border"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="duration_nights" className="block text-sm font-medium text-gray-700">
-                Nights
-              </label>
-              <div className="mt-1">
-                <input
-                  type="number"
-                  name="duration_nights"
-                  id="duration_nights"
-                  required
-                  defaultValue={tour?.duration_nights}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm p-2 border"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label htmlFor="starting_price" className="block text-sm font-medium text-gray-700">
-                Starting Price (₹)
-              </label>
-              <div className="mt-1">
-                <input
-                  type="number"
-                  name="starting_price"
-                  id="starting_price"
-                  required
-                  defaultValue={tour?.starting_price}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm p-2 border"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-6">
-              <label htmlFor="short_description" className="block text-sm font-medium text-gray-700">
-                Short Description
-              </label>
-              <div className="mt-1">
-                <textarea
-                  id="short_description"
-                  name="short_description"
-                  rows={3}
-                  defaultValue={tour?.short_description}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm p-2 border"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Main Image
-              </label>
-              <input type="hidden" name="main_image" value={mainImage} />
-              <ImageUpload
-                bucket="images"
-                folder="tours"
-                value={mainImage}
-                onChange={setMainImage}
-              />
-            </div>
-
-            <div className="sm:col-span-6">
-              <div className="flex items-start">
-                <div className="flex h-5 items-center">
-                  <input
-                    id="is_published"
-                    name="is_published"
-                    type="checkbox"
-                    defaultChecked={tour?.is_published}
-                    className="h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
-                  />
-                </div>
-                <div className="ml-3 text-sm">
-                  <label htmlFor="is_published" className="font-medium text-gray-700">
-                    Publish Tour
-                  </label>
-                  <p className="text-gray-500">Make this tour visible on the public website.</p>
-                </div>
-              </div>
-            </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">URL Slug</label>
+            <input type="text" name="slug" defaultValue={tour?.slug} required className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Destination</label>
+            <select name="destinationId" defaultValue={tour?.destinationId || ""} className="w-full border border-stone-300 rounded-md px-4 py-2">
+              <option value="">-- Select Destination --</option>
+              {destinations.map(d => (
+                <option key={d.id} value={d.id}>{d.name}</option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Duration</label>
+            <input type="text" name="duration" defaultValue={tour?.duration} required placeholder="e.g. 2 Nights / 3 Days" className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Price</label>
+            <input type="text" name="price" defaultValue={tour?.price} required placeholder="e.g. 25000" className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Price Label</label>
+            <input type="text" name="priceLabel" defaultValue={tour?.priceLabel} required placeholder="e.g. per couple" className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Starting Point</label>
+            <input type="text" name="startingPoint" defaultValue={tour?.startingPoint || ""} placeholder="e.g. Ex-Guwahati" className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-stone-700 mb-1">Short Description</label>
+            <textarea name="shortDescription" defaultValue={tour?.shortDescription} required rows={2} className="w-full border border-stone-300 rounded-md px-4 py-2"></textarea>
+          </div>
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium text-stone-700 mb-1">Full Description</label>
+            <textarea name="description" defaultValue={tour?.description || ""} rows={4} className="w-full border border-stone-300 rounded-md px-4 py-2"></textarea>
           </div>
         </div>
       </div>
 
-      <div className="pt-5">
-        <div className="flex justify-end gap-3">
-          <button
-            type="button"
-            className="rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-            onClick={() => window.history.back()}
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={loading}
-            className="inline-flex justify-center rounded-md border border-transparent bg-gray-900 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
-          >
-            {loading ? 'Saving...' : 'Save Tour'}
-          </button>
+      <div className="space-y-4 border-b border-stone-200 pb-6">
+        <h3 className="text-lg font-semibold text-stone-800">Accommodation & Transport</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Hotels</label>
+            <input type="text" name="hotels" defaultValue={tour?.hotels || ""} placeholder="e.g. 3 Star / 4 Star Options" className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Transportation</label>
+            <input type="text" name="transportation" defaultValue={tour?.transportation || ""} placeholder="e.g. Sedan, SUV" className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
         </div>
+      </div>
+
+      <div className="space-y-4 border-b border-stone-200 pb-6">
+        <h3 className="text-lg font-semibold text-stone-800">Cover Image</h3>
+        <div className="flex items-start space-x-6">
+          <div className="relative h-40 w-64 bg-stone-100 rounded-md overflow-hidden border border-stone-300 flex items-center justify-center">
+            {imagePreview ? (
+              <Image src={imagePreview} alt="Preview" fill className="object-cover" />
+            ) : (
+              <span className="text-stone-400 text-sm">No cover image</span>
+            )}
+          </div>
+          <div className="flex-1 space-y-3">
+            <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading} className="block w-full text-sm text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gold-50 file:text-gold-700" />
+            <input type="text" value={imagePreview} onChange={(e) => setImagePreview(e.target.value)} placeholder="Or paste image URL" className="w-full border border-stone-300 rounded-md px-4 py-2 text-sm" />
+          </div>
+        </div>
+      </div>
+
+      <div className="space-y-4 pb-6">
+        <h3 className="text-lg font-semibold text-stone-800">Settings</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-stone-700 mb-1">Sort Order</label>
+            <input type="number" name="sortOrder" defaultValue={tour?.sortOrder ?? 0} className="w-full border border-stone-300 rounded-md px-4 py-2" />
+          </div>
+          <div className="flex items-center h-full pt-6">
+            <label className="flex items-center space-x-3 cursor-pointer">
+              <input type="checkbox" name="isActive" defaultChecked={tour?.isActive ?? true} className="w-5 h-5 text-gold-600 rounded border-stone-300" />
+              <span className="text-sm font-medium text-stone-700">Publish immediately</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-4 flex justify-end gap-3">
+        <button type="button" onClick={() => router.back()} className="px-6 py-2 border border-stone-300 rounded-md text-stone-700">Cancel</button>
+        <button type="submit" disabled={loading || uploading || !imagePreview} className="px-6 py-2 bg-gold-600 text-white rounded-md hover:bg-gold-500 disabled:opacity-50">
+          {loading ? "Saving..." : "Save Package"}
+        </button>
       </div>
     </form>
-  )
+  );
 }

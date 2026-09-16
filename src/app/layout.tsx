@@ -6,8 +6,8 @@ const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfa
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "Northeast Tours & Travels | Premium Journeys",
-  description: "Discover the landscapes, cultures and journeys of Northeast India — thoughtfully planned, comfortably travelled.",
+  title: "Majestic Northeast Tours and Travel | The Soul of Incredible Northeast",
+  description: "Discover mist-covered mountains, living root bridges, crystal-clear rivers and the untouched beauty of Northeast India.",
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-stone-50 text-stone-900`}>
+      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased bg-dark-900 text-stone-200`}>
         {children}
       </body>
     </html>
