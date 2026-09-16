@@ -5,6 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import prisma from "@/lib/prisma";
 import { Header } from "@/components/ui/Header";
 import { Footer } from "@/components/ui/Footer";
+import { LightboxGallery } from "@/components/ui/LightboxGallery";
 
 export default async function ExperienceDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -86,18 +87,7 @@ export default async function ExperienceDetail({ params }: { params: Promise<{ s
         <section className="py-24 bg-black">
           <div className="px-6 md:px-12 max-w-7xl mx-auto w-full">
             <h2 className="font-playfair text-3xl text-gold-400 mb-12 text-center">Visual Journey</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {exp.gallery.map((img, i) => (
-                <div key={img.id} className="relative h-64 w-full group overflow-hidden">
-                  <Image 
-                    src={img.url}
-                    alt={img.altText || `${exp.title} Gallery ${i + 1}`}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-              ))}
-            </div>
+            <LightboxGallery images={exp.gallery} />
           </div>
         </section>
       )}

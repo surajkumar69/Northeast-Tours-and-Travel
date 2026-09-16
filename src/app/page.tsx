@@ -15,16 +15,11 @@ export default async function Home() {
     include: { destination: true } 
   });
   
-  const experiences = [
-    { title: "Living Root Bridges", img: "/images/meghalaya_root_bridge_1789460307682.jpg" },
-    { title: "Wildlife Safari", img: "/images/kaziranga_national_park.jpg" },
-    { title: "Himalayan Landscapes", img: "https://images.unsplash.com/photo-1572005080922-b9e3831828f7?q=80&w=1000&auto=format&fit=crop" },
-    { title: "Tribal Culture", img: "https://images.unsplash.com/photo-1596766487195-2cc021b2b800?q=80&w=1000&auto=format&fit=crop" },
-    { title: "Ancient Monasteries", img: "/images/arunachal_monastery_1789460394921.jpg" },
-    { title: "Majestic Waterfalls", img: "/images/meghalaya_waterfall_1789460321208.jpg" },
-    { title: "Tea Estates", img: "/images/assam_tea_estate_1789460102115.jpg" },
-    { title: "Alpine Lakes", img: "/images/arunachal_sela_pass_1789460408512.jpg" },
-  ];
+  const experiences = await prisma.experience.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: 'asc' },
+    take: 4
+  });
 
   return (
     <div className="min-h-screen flex flex-col bg-dark-900 text-stone-200 overflow-x-hidden font-sans">
@@ -163,14 +158,15 @@ export default async function Home() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-          {experiences.map((exp, idx) => (
-            <div key={idx} className="group relative h-[250px] md:h-[350px] rounded-xl overflow-hidden">
-              <Image src={exp.img} alt={exp.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+          {experiences.map((exp) => (
+            <Link href={`/experiences/${exp.slug}`} key={exp.id} className="group relative h-[250px] md:h-[350px] rounded-xl overflow-hidden block">
+              <Image src={exp.coverImage} alt={exp.title} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors" />
-              <div className="absolute inset-0 flex items-center justify-center p-4 text-center">
-                <h4 className="font-playfair text-xl md:text-2xl text-white drop-shadow-lg">{exp.title}</h4>
+              <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                <h4 className="font-playfair text-xl md:text-2xl text-white drop-shadow-lg mb-2">{exp.title}</h4>
+                <span className="text-gold-400 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">View Gallery</span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
