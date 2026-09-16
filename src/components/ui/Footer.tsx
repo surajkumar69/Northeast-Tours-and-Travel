@@ -65,7 +65,7 @@ export function Footer() {
       </div>
       
       <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-stone-900 text-center text-xs font-light text-stone-600">
-        &copy; {new Date().getFullYear()} Northeast Tours & Travel. All rights reserved.
+        &copy; {new Date().getFullYear()} Northeast Tours & Travel. All rights reserved. <span className="mx-2">|</span> <Link href="/admin/login" className="hover:text-gold-400 transition-colors">Admin Login</Link>
       </div>
     </footer>
   );
