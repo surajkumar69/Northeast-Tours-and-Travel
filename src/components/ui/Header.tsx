@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
+import Image from "next/image";
+
 export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,9 +23,19 @@ export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
 
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${bgClass}`}>
-      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        <Link href="/" className={`text-2xl font-playfair tracking-wider font-bold ${textColor}`}>
-          NORTHEAST TOURS
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <Link href="/" className="flex items-center space-x-3 group">
+          <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105">
+            <Image src="/logo.png" alt="Majestic Northeast Tours and Travel Logo" fill className="object-contain" />
+          </div>
+          <div className="flex flex-col">
+            <span className={`text-sm md:text-lg font-playfair tracking-wider font-bold ${textColor} leading-tight`}>
+              MAJESTIC NORTHEAST
+            </span>
+            <span className={`text-[8px] md:text-[10px] tracking-widest font-sans font-semibold text-gold-500 uppercase leading-tight`}>
+              Tours and Travel
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Nav */}
