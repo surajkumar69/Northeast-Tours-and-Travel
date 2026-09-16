@@ -68,7 +68,7 @@ const defaultBookingInfo = {
 export const tourPackages: TourPackage[] = [
   {
     id: 'pkg-1',
-    slug: 'meghalaya-kamakhya-tour',
+    slug: 'shillong-cherrapunji-5n-6d',
     title: 'Meghalaya With Kamakhya Temple',
     duration: '5 Days / 4 Nights',
     destination: 'Meghalaya & Assam',
@@ -99,7 +99,7 @@ export const tourPackages: TourPackage[] = [
   },
   {
     id: 'pkg-2',
-    slug: 'arunachal-tawang-adventure',
+    slug: 'tawang-tour-5n-6d',
     title: 'Arunachal Pradesh Adventure & Tawang Trip',
     duration: '7 Days / 6 Nights',
     destination: 'Arunachal Pradesh',

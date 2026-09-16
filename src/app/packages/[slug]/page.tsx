@@ -6,6 +6,16 @@ import prisma from "@/lib/prisma";
 import { Header } from "@/components/ui/Header";
 
 // Note: Ensure the db is seeded, otherwise we handle 404 cleanly.
+
+export async function generateStaticParams() {
+  const packages = await prisma.tourPackage.findMany({
+    select: { slug: true },
+  });
+  return packages.map((pkg) => ({
+    slug: pkg.slug,
+  }));
+}
+
 export default async function PackageDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const pkg = await prisma.tourPackage.findUnique({
@@ -150,7 +160,7 @@ export default async function PackageDetail({ params }: { params: Promise<{ slug
               <input type="date" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-400 focus:outline-none focus:border-gold-500" required />
               
               <button type="button" className="w-full bg-gold-500 hover:bg-gold-400 text-white font-medium tracking-widest uppercase py-4 transition-colors mt-4">
-                Proceed to Payment
+                Book Now
               </button>
             </form>
             
