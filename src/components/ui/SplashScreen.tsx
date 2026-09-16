@@ -66,13 +66,13 @@ export function SplashScreen() {
                   native img prevents some hydration layout shifts for pure logos.
                 */}
                 <Image
-                  src="/logo.png"
+                  src="/logo.jpg"
                   alt="Majestic Northeast Tours and Travel Logo"
                   fill
                   priority
                   className="object-contain drop-shadow-2xl"
                   onError={(e) => {
-                    // Fallback visually if logo isn't at /logo.png yet, to prevent broken image icon
+                    // Fallback visually if logo isn't at /logo.jpg yet, to prevent broken image icon
                     e.currentTarget.style.display = 'none';
                   }}
                 />

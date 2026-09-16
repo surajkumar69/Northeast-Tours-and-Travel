@@ -26,7 +26,7 @@ export function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center space-x-3 group">
           <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full transition-transform duration-300 group-hover:scale-105">
-            <Image src="/logo.png" alt="Majestic Northeast Tours and Travel Logo" fill className="object-contain" />
+            <Image src="/logo.jpg" alt="Majestic Northeast Tours and Travel Logo" fill className="object-contain" />
           </div>
           <div className="flex flex-col">
             <span className={`text-sm md:text-lg font-playfair tracking-wider font-bold ${textColor} leading-tight`}>
