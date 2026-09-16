@@ -9,8 +9,11 @@ const SECRET_KEY = new TextEncoder().encode(
 export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   
-  // Only protect /admin routes
-  if (path.startsWith('/admin') && path !== '/admin/login') {
+  // Clean path (remove trailing slash for reliable comparison)
+  const cleanPath = path.endsWith('/') && path.length > 1 ? path.slice(0, -1) : path;
+  
+  // Protect /admin routes, but allow /admin/login
+  if (cleanPath.startsWith('/admin') && cleanPath !== '/admin/login') {
     const token = request.cookies.get('admin_token')?.value;
 
     if (!token) {
@@ -21,7 +24,10 @@ export async function proxy(request: NextRequest) {
       await jwtVerify(token, SECRET_KEY);
       return NextResponse.next();
     } catch (err) {
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      // Invalid token, clear cookie and redirect
+      const response = NextResponse.redirect(new URL('/admin/login', request.url));
+      response.cookies.delete('admin_token');
+      return response;
     }
   }
 
