@@ -42,7 +42,7 @@ export default function ContactPage() {
         
         <div className="border border-stone-800 bg-stone-900 p-8 rounded-sm">
           <h3 className="font-playfair text-2xl text-white mb-6">Send an Enquiry</h3>
-          <form className="space-y-4">
+          <form id="booking-form" className="space-y-4">
             <input type="text" placeholder="Full Name" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-white focus:outline-none focus:border-gold-500" required />
             <input type="email" placeholder="Email Address" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-white focus:outline-none focus:border-gold-500" required />
             <input type="tel" placeholder="Phone Number" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-white focus:outline-none focus:border-gold-500" required />

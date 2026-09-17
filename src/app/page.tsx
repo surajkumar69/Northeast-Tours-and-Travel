@@ -6,23 +6,23 @@ export default async function HomePage() {
   const destinations = [
     {
       id: 'dest-1',
-      name: 'Arunachal Pradesh',
-      shortDescription: 'Discover the mystical Himalayan mountains, Tawang monastery, and winding mountain roads.',
-      coverImage: '/images/ai-generated/himalayan_landscape_2_1789535426416.jpg',
-      slug: 'arunachal'
-    },
-    {
-      id: 'dest-2',
       name: 'Meghalaya',
       shortDescription: 'Explore the Abode of Clouds, Cherrapunji waterfalls, green hills, and misty landscapes.',
       coverImage: '/images/ai-generated/shillong_gallery_1_1789536715356.jpg',
       slug: 'meghalaya'
     },
     {
+      id: 'dest-2',
+      name: 'Assam',
+      shortDescription: 'Experience the spiritual Kamakhya Temple, rich tea gardens, and vibrant Assamese culture.',
+      coverImage: '/images/ai-generated/assam_kamakhya.jpg',
+      slug: 'assam'
+    },
+    {
       id: 'dest-3',
       name: 'Kaziranga National Park',
       shortDescription: 'Witness the one-horned rhinoceros in Kaziranga and lush tea grasslands.',
-      coverImage: '/images/ai-generated/kaziranga_rhino_ai.jpg',
+      coverImage: '/images/ai-generated/kaziranga_rhino_v2.jpg',
       slug: 'kaziranga-national-park'
     },
     {

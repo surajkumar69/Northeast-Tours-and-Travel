@@ -64,8 +64,21 @@ export function Footer() {
         </div>
 
       </div>
+
+      {/* Popular Routes (SEO) */}
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-12 border-t border-stone-900">
+        <h4 className="text-white font-medium tracking-widest text-sm uppercase mb-6">Popular Routes</h4>
+        <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm font-light text-stone-500">
+          <Link href="/routes/guwahati-to-shillong-taxi" className="hover:text-gold-500 transition-colors">Guwahati to Shillong</Link>
+          <Link href="/routes/guwahati-to-cherrapunji-taxi" className="hover:text-gold-500 transition-colors">Guwahati to Cherrapunji</Link>
+          <Link href="/routes/guwahati-to-kaziranga-taxi" className="hover:text-gold-500 transition-colors">Guwahati to Kaziranga</Link>
+          <Link href="/routes/guwahati-to-tawang-taxi" className="hover:text-gold-500 transition-colors">Guwahati to Tawang</Link>
+          <Link href="/routes/shillong-to-cherrapunji" className="hover:text-gold-500 transition-colors">Shillong to Cherrapunji</Link>
+          <Link href="/routes" className="hover:text-white transition-colors underline underline-offset-4">View All Routes &rarr;</Link>
+        </div>
+      </div>
       
-      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-stone-900 text-center text-xs font-light text-stone-600">
+      <div className="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-stone-900 text-center text-xs font-light text-stone-600">
         &copy; {new Date().getFullYear()} Northeast Tours & Travel. All rights reserved.
       </div>
     </footer>

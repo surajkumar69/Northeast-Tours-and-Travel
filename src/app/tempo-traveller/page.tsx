@@ -89,7 +89,7 @@ export default async function TempoTravellersPage() {
                   <div>
                     <p className="text-xs text-stone-500 uppercase tracking-widest mb-1">Starting From</p>
                     <div className="text-2xl font-medium text-white">
-                      ₹{tempo.pricePerDay || 'On Request'} <span className="text-sm text-stone-500 font-normal">/ day</span>
+                      {tempo.pricePerDay || 'On Request'}
                     </div>
                   </div>
                 </div>

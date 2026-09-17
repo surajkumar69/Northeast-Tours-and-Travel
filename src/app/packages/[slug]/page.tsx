@@ -153,8 +153,8 @@ export default async function PackageDetail({ params }: { params: Promise<{ slug
               {pkg.price} <span className="text-sm font-sans text-stone-500">{pkg.priceLabel}</span>
             </div>
 
-            <form className="space-y-4 mb-6">
-              <input type="text" placeholder="Full Name" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-white focus:outline-none focus:border-gold-500" required />
+            <form id="booking-form" className="space-y-4 mb-6">
+              <input type="text" placeholder="Full Name" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-400 focus:outline-none focus:border-gold-500" required />
               <input type="email" placeholder="Email Address" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-white focus:outline-none focus:border-gold-500" required />
               <input type="tel" placeholder="Phone Number" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-white focus:outline-none focus:border-gold-500" required />
               <input type="date" className="w-full bg-stone-950 border border-stone-800 px-4 py-3 text-stone-400 focus:outline-none focus:border-gold-500" required />

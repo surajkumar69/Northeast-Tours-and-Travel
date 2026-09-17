@@ -91,11 +91,11 @@ export default async function TaxiDetailPage({ params }: { params: Promise<{ slu
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <div className="flex justify-between border-b border-stone-800 pb-2">
                   <span className="text-stone-400">Per Day Rate (Local)</span>
-                  <span className="text-white font-medium">₹{taxi.pricePerDay || 'N/A'}</span>
+                  <span className="text-white font-medium">{taxi.pricePerDay || 'N/A'}</span>
                 </div>
                 <div className="flex justify-between border-b border-stone-800 pb-2">
                   <span className="text-stone-400">Per Km Rate</span>
-                  <span className="text-white font-medium">₹{taxi.pricePerKm || 'N/A'}</span>
+                  <span className="text-white font-medium">{taxi.pricePerKm || 'N/A'}</span>
                 </div>
                 <div className="flex justify-between border-b border-stone-800 pb-2">
                   <span className="text-stone-400">Outstation/Hills Rate</span>

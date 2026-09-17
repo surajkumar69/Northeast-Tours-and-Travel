@@ -53,7 +53,7 @@ export function TempoBookingForm({ vehicleId, vehicleName }: { vehicleId: string
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form id="booking-form" onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block text-xs font-medium text-stone-400 uppercase tracking-wider mb-2">Full Name *</label>
