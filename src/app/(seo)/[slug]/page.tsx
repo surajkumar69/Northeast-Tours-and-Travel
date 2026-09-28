@@ -13,8 +13,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const page = seoPages.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const page = seoPages.find((p) => p.slug === slug);
   if (!page) return {};
   
   return {
@@ -26,8 +27,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function SeoLandingPage({ params }: { params: { slug: string } }) {
-  const page = seoPages.find((p) => p.slug === params.slug);
+export default async function SeoLandingPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const page = seoPages.find((p) => p.slug === slug);
   if (!page) notFound();
 
   const whatsappMessage = encodeURIComponent(`Hi Majestic Northeast Tours, I am interested in your services regarding: ${page.h1}`);
