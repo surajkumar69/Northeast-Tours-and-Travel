@@ -65,8 +65,30 @@ export default async function HomePage() {
   });
   
   // Combine them and ensure we have an array for the homepage
-  // The AnimatedHomepage expects objects with id, mainImage, name, shortDescription, seatingCapacity, pricePerDay
-  const fleet = [...taxisData, ...temposData];
+  const unsortedFleet = [...taxisData, ...temposData];
+
+  // The requested order of vehicles
+  const fleetOrder = [
+    'Swift Dzire',
+    'Vitara Brezza',
+    'Ertiga',
+    '13/17 Seater Tempo Traveller',
+    '25 Seater Tempo Traveller',
+    '12/16 Seater Urbania'
+  ];
+
+  const fleet = [...unsortedFleet].sort((a, b) => {
+    const indexA = fleetOrder.indexOf(a.name);
+    const indexB = fleetOrder.indexOf(b.name);
+    
+    // If both are in the order array, sort by their index
+    if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+    // If only one is in the array, prioritize it
+    if (indexA !== -1) return -1;
+    if (indexB !== -1) return 1;
+    // Otherwise keep original order
+    return 0;
+  });
 
   // Culture images from our existing AI-generated culture section
   const cultureImages = [
