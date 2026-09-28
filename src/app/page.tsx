@@ -15,14 +15,14 @@ export default async function HomePage() {
       id: 'dest-2',
       name: 'Assam',
       shortDescription: 'Experience the spiritual Kamakhya Temple, rich tea gardens, and vibrant Assamese culture.',
-      coverImage: '/images/ai-generated/assam_kamakhya.jpg',
+      coverImage: '/images/destinations/user_assam.jpg',
       slug: 'assam'
     },
     {
       id: 'dest-3',
       name: 'Kaziranga National Park',
       shortDescription: 'Witness the one-horned rhinoceros in Kaziranga and lush tea grasslands.',
-      coverImage: '/images/ai-generated/kaziranga_rhino_v2.jpg',
+      coverImage: '/images/destinations/user_kaziranga_v2.jpg',
       slug: 'kaziranga-national-park'
     },
     {

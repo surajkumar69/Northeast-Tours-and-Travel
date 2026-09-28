@@ -51,8 +51,9 @@ export default async function PackagesPage() {
                 <p className="text-stone-400 text-sm mb-6 flex-1">{pkg.shortDescription}</p>
                 
                 <div className="flex justify-between items-center mb-6 pt-4 border-t border-stone-800">
-                    <div className="flex items-center text-stone-400 text-sm">
-                      <Clock className="w-4 h-4 mr-2" /> {pkg.duration}
+                    <div className="flex flex-col text-stone-400 text-sm gap-1">
+                      <div className="flex items-center"><Clock className="w-4 h-4 mr-2 text-gold-500" /> {pkg.duration}</div>
+                      {pkg.startingPoint && <div className="flex items-center"><MapPin className="w-4 h-4 mr-2 text-gold-500" /> {pkg.startingPoint}</div>}
                     </div>
                     <div className="text-right flex flex-col items-end">
                       <div className="text-[10px] text-stone-500 uppercase tracking-widest leading-tight">Starting from</div>

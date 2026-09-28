@@ -18,6 +18,7 @@ export type TourPackage = {
   gallery: string[];
   price: string;
   priceLabel: string;
+  startingPoint?: string;
   highlights: string[];
   itinerary: DayPlan[];
   inclusions: string[];
@@ -60,7 +61,7 @@ const defaultNotes = [
 
 const defaultBookingInfo = {
   phone: '+917640076969',
-  email: 'thedivinetravel01@gmail.com',
+  email: 'majestcnortheasttour@gmail.com',
   whatsappMessage: (pkgName: string, duration: string) => 
     `Hello, I am interested in booking the ${pkgName} (${duration}) package. Please provide more details.`
 };
@@ -82,8 +83,9 @@ export const tourPackages: TourPackage[] = [
       '/images/meghalaya_dawki_river_1789460337488.jpg',
       '/images/assam_temple_1789460276376.jpg'
     ],
-    price: '₹11,000/-',
+    price: '₹32,000/-',
     priceLabel: 'per person',
+    startingPoint: 'EX-GUWAHATI',
     highlights: ['Darshan at Kamakhya Temple', 'Umiam Lake Viewpoint', 'Cherrapunjee Waterfalls', 'Dawki River Boating', 'Mawlynnong Cleanest Village'],
     itinerary: [
       { day: 1, title: 'Arrival in Guwahati & Kamakhya Temple', activities: ['Arrive at Guwahati Airport/Railway Station.', 'Visit the sacred Kamakhya Temple.', 'Proceed to Shillong, the Scotland of the East.', 'Stop at Umiam Lake for breathtaking sunset views.'] },
@@ -139,15 +141,16 @@ export const tourPackages: TourPackage[] = [
     category: 'Assam',
     shortDescription: 'Spot the majestic one-horned rhinoceros and diverse wildlife in this UNESCO World Heritage site.',
     description: 'An unforgettable wildlife safari experience in the world-renowned Kaziranga National Park. Enjoy thrilling elephant and jeep safaris while spotting rhinos, tigers, wild water buffaloes, and exotic bird species.',
-    coverImage: '/images/ai-generated/kaziranga_rhino_ai.jpg',
+    coverImage: '/images/destinations/user_kaziranga_v2.jpg',
     gallery: [
-      '/images/ai-generated/kaziranga_rhino_ai.jpg',
+      '/images/destinations/user_kaziranga_v2.jpg',
       '/images/assam_majuli_river_1789460244378.jpg',
       '/images/assam_tea_estate_1789460102115.jpg',
       '/images/assam_culture_1789460260883.jpg'
     ],
-    price: '₹12,500/-',
+    price: '₹19,000/-',
     priceLabel: 'for 2 persons',
+    startingPoint: 'EX-GUWAHATI',
     highlights: ['Elephant Safari in Central Range', 'Jeep Safari in Western Range', 'Kaziranga Orchid Park', 'Assam Tea Garden Visit'],
     itinerary: [
       { day: 1, title: 'Guwahati to Kaziranga', activities: ['Pickup from Guwahati Airport/Station.', 'Scenic drive to Kaziranga National Park (approx 4.5 hours).', 'Check-in to your resort/hotel.', 'Evening visit to the Kaziranga Orchid and Biodiversity Park.'] },

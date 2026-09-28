@@ -79,9 +79,9 @@ export const MOCK_TOURS: Tour[] = [
     title: 'Kaziranga National Park',
     short_description: 'Spot the majestic one-horned rhinoceros and diverse wildlife in this UNESCO World Heritage site.',
     price_display: 'Package starting from ₹25000/- (2person)',
-    main_image: 'https://images.unsplash.com/photo-1616012480717-fd9867059ca0?q=80&w=2670&auto=format&fit=crop',
+    main_image: '/images/destinations/user_kaziranga_v2.jpg',
     gallery_images: [
-      'https://images.unsplash.com/photo-1616012480717-fd9867059ca0?q=80&w=2670&auto=format&fit=crop',
+      '/images/destinations/user_kaziranga_v2.jpg',
       '/images/kaziranga_national_park.jpg',
       '/images/assam_majuli_river_1789460244378.jpg',
       '/images/assam_tea_estate_1789460102115.jpg'

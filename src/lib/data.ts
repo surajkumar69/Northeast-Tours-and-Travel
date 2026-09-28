@@ -49,9 +49,9 @@ export const destinations = [
       name: "Kaziranga National Park",
       state: "Assam",
       description: "Home to the one-horned rhinoceros and diverse wildlife.",
-      mainImage: "/images/ai-generated/kaziranga_rhino_ai.jpg",
+      mainImage: "/images/destinations/user_kaziranga_v2.jpg",
       images: [
-        "/images/ai-generated/kaziranga_rhino_ai.jpg",
+        "/images/destinations/user_kaziranga_v2.jpg",
         "/images/assam_majuli_river_1789460244378.jpg",
         "/images/assam_temple_1789460276376.jpg",
         "/images/assam_tea_estate_1789460102115.jpg"
