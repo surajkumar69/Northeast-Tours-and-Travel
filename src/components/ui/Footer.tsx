@@ -12,7 +12,7 @@ export function Footer() {
             NORTHEAST TOURS
           </Link>
           <p className="font-light text-sm leading-relaxed text-stone-400">
-            Premium, curated travel experiences across Northeast India. Discover landscapes, cultures, and breathtaking journeys thoughtfully planned just for you.
+            Curated travel experiences across Northeast India. Discover landscapes, cultures, and breathtaking journeys thoughtfully planned just for you.
           </p>
           <div className="flex space-x-4 text-xs tracking-widest font-medium uppercase">
             <a href="#" className="text-stone-500 hover:text-white transition-colors">FB</a>

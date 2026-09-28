@@ -55,10 +55,18 @@ export default async function HomePage() {
     take: 3
   });
 
-  // Fetch fleet (taxis)
-  const taxis = await prisma.taxiVehicle.findMany({
-    take: 3
+  // Fetch all active fleet (6 vehicles requested)
+  const taxisData = await prisma.taxiVehicle.findMany({
+    where: { isActive: true }
   });
+  
+  const temposData = await prisma.tempoTraveller.findMany({
+    where: { isActive: true }
+  });
+  
+  // Combine them and ensure we have an array for the homepage
+  // The AnimatedHomepage expects objects with id, mainImage, name, shortDescription, seatingCapacity, pricePerDay
+  const fleet = [...taxisData, ...temposData];
 
   // Culture images from our existing AI-generated culture section
   const cultureImages = [
@@ -72,7 +80,7 @@ export default async function HomePage() {
     <AnimatedHomepage 
       destinations={destinations}
       packages={packages}
-      taxis={taxis}
+      taxis={fleet}
       cultureImages={cultureImages}
     />
   );

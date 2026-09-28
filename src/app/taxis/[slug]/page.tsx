@@ -6,7 +6,7 @@ import { TaxiBookingForm } from "@/components/taxi/TaxiBookingForm";
 import { CheckCircle, Users, Snowflake, Briefcase, Info } from "lucide-react";
 
 export async function generateStaticParams() {
-  const taxis = await prisma.taxiVehicle.findMany();
+  const taxis = await prisma.taxiVehicle.findMany({ where: { isActive: true } });
   return taxis.map((t) => ({ slug: t.slug }));
 }
 

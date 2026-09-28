@@ -6,7 +6,7 @@ import { TempoBookingForm } from "@/components/tempo/TempoBookingForm";
 import { CheckCircle, Users, Snowflake, Briefcase, Info } from "lucide-react";
 
 export async function generateStaticParams() {
-  const tempos = await prisma.tempoTraveller.findMany();
+  const tempos = await prisma.tempoTraveller.findMany({ where: { isActive: true } });
   return tempos.map((t) => ({ slug: t.slug }));
 }
 

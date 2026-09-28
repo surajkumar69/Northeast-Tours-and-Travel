@@ -23,7 +23,7 @@ export default async function TempoTravellersPage() {
         <div className="absolute inset-0 z-0">
           <Image 
             src="/images/tempos/urbania_16_front_1789520031263.jpg"
-            alt="Premium Tempo Traveller and Force Urbania"
+            alt="Tempo Traveller and Force Urbania"
             fill
             className="object-cover opacity-60"
             priority
@@ -31,7 +31,7 @@ export default async function TempoTravellersPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-dark-900 via-dark-900/50 to-transparent" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-          <h1 className="font-playfair text-4xl md:text-6xl text-white mb-6 tracking-wide">Premium Group Travel</h1>
+          <h1 className="font-playfair text-4xl md:text-6xl text-white mb-6 tracking-wide">Group Travel</h1>
           <p className="text-stone-300 text-lg md:text-xl font-light">
             Luxury Force Urbania and Tempo Traveller rentals for unforgettable journeys across Northeast India.
           </p>

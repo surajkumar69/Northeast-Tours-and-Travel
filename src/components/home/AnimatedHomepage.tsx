@@ -247,7 +247,7 @@ export function AnimatedHomepage({
             className="text-center mb-16"
           >
             <span className="text-gold-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">Travel in Comfort</span>
-            <h2 className="font-playfair text-4xl md:text-5xl text-[#0a1a14]">Our Premium Fleet</h2>
+            <h2 className="font-playfair text-4xl md:text-5xl text-[#0a1a14]">Our Fleet</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -265,8 +265,8 @@ export function AnimatedHomepage({
                 </div>
                 <div className="p-8 text-center">
                   <h3 className="font-playfair text-2xl text-[#0a1a14] mb-3">{taxi.name}</h3>
-                  <p className="text-stone-500 text-sm line-clamp-2 mb-6 font-light">{taxi.description}</p>
-                  <Link href={`/taxis/${taxi.slug}`} className="inline-block border border-gold-600 text-gold-600 hover:bg-gold-600 hover:text-white px-6 py-3 text-xs uppercase tracking-widest font-bold rounded-sm transition-colors">
+                  <p className="text-stone-500 text-sm line-clamp-2 mb-6 font-light">{taxi.shortDescription}</p>
+                  <Link href={`${taxi.type === 'Mini Bus' ? `/tempo-traveller/${taxi.slug}` : `/taxis/${taxi.slug}`}`} className="inline-block border border-gold-600 text-gold-600 hover:bg-gold-600 hover:text-white px-6 py-3 text-xs uppercase tracking-widest font-bold rounded-sm transition-colors">
                     Enquire Now
                   </Link>
                 </div>
@@ -292,7 +292,7 @@ export function AnimatedHomepage({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               { icon: Compass, title: "Local Expertise", desc: "Unmatched knowledge of hidden trails and untouched destinations across the Northeast." },
-              { icon: ShieldCheck, title: "Premium Comfort", desc: "Travel safely in our modern, well-maintained fleet with experienced professional drivers." },
+              { icon: ShieldCheck, title: "Ultimate Comfort", desc: "Travel safely in our modern, well-maintained fleet with experienced professional drivers." },
               { icon: Users, title: "Tailored Experiences", desc: "Bespoke itineraries designed carefully to match your pace, interests, and comfort." }
             ].map((feature, idx) => (
               <motion.div key={idx} variants={fadeUp} className="flex flex-col items-center group">

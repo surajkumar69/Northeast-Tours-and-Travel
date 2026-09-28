@@ -21,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: route.title,
     description: route.metaDescription,
+    keywords: [route.h1, `${route.from} to ${route.to}`, 'Northeast Taxi', 'Cab Booking', 'Majestic Northeast Tours'],
     alternates: {
       canonical: `/routes/${route.slug}`,
     },

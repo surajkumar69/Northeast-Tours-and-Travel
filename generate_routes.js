@@ -68,9 +68,9 @@ ${routesList.map(r => {
   return `  {
     slug: '${slug}',
     title: '${name} | Majestic Northeast Tours and Travel',
-    h1: 'Premium ${name} Service',
-    metaDescription: 'Book a premium ${name} with Majestic Northeast Tours and Travel. Enjoy a comfortable journey covering ${distance} in approx ${duration}. Best fares and well-maintained fleet.',
-    intro: 'Welcome to our premium ${name} booking page. Whether you are traveling for business, leisure, or a family vacation, we provide comfortable, reliable, and safe transportation. Our experienced drivers know the terrain perfectly, ensuring you enjoy the stunning views safely.',
+    h1: '${name}',
+    metaDescription: 'Book a ${name} with Majestic Northeast Tours and Travel. Enjoy a comfortable journey covering ${distance} in approx ${duration}. Best fares and well-maintained fleet.',
+    intro: 'Welcome to our ${name} booking page. Whether you are traveling for business, leisure, or a family vacation, we provide comfortable, reliable, and safe transportation. Our experienced drivers know the terrain perfectly, ensuring you enjoy the stunning views safely.',
     from: '${r.from}',
     to: '${r.to}',
     distance: '${distance}',
@@ -82,7 +82,7 @@ ${routesList.map(r => {
       },
       {
         q: 'What vehicles are available for this route?',
-        a: 'We offer a wide range of premium vehicles including Swift Dzire, Vitara Brezza, Ertiga, Innova Crysta, and 13 to 25 Seater Tempo Travellers.'
+        a: 'We offer a wide range of vehicles including Swift Dzire, Vitara Brezza, Ertiga, and 12 to 25 Seater Tempo Travellers and Urbania.'
       },
       {
         q: 'How do I book a ${name}?',

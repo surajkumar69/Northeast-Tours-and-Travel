@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'All Taxi Routes & Cab Services | Majestic Northeast Tours and Travel',
-  description: 'Browse our complete list of premium taxi and cab routes across Northeast India including Guwahati, Shillong, Cherrapunji, Kaziranga, and Tawang.',
+  description: 'Browse our complete list of taxi and cab routes across Northeast India including Guwahati, Shillong, Cherrapunji, Kaziranga, and Tawang.',
   alternates: {
     canonical: '/routes',
   }
@@ -22,7 +22,7 @@ export default function RoutesIndexPage() {
             Popular Travel Routes
           </h1>
           <p className="text-lg text-stone-400 max-w-2xl mx-auto leading-relaxed">
-            Choose from our extensive network of premium taxi and cab services across Northeast India. We provide safe, comfortable, and reliable transportation for all major destinations.
+            Choose from our extensive network of taxi and cab services across Northeast India. We provide safe, comfortable, and reliable transportation for all major destinations.
           </p>
         </div>
       </section>

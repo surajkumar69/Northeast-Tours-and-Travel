@@ -57,7 +57,7 @@ export const HeroCarousel = ({ slides }: { slides: Slide[] }) => {
           <h1 className="font-playfair text-white text-4xl md:text-6xl font-bold leading-[1.05] mb-6 drop-shadow-2xl">
             Discover the Soul of Incredible Northeast
           </h1>
-          <p className="text-stone-300 text-lg">Curated premium travel experiences.</p>
+          <p className="text-stone-300 text-lg">Curated travel experiences.</p>
         </div>
       </div>
     );
