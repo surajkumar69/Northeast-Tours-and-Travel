@@ -24,7 +24,7 @@ export default function ContactPage() {
               <Mail className="w-6 h-6 text-gold-500 mr-4 shrink-0" />
               <div>
                 <h3 className="text-white font-medium mb-1 tracking-widest uppercase text-sm">Email Us</h3>
-                <a href="mailto:majestcnortheasttour@gmail.com" className="text-stone-400 hover:text-gold-500 transition-colors">majestcnortheasttour@gmail.com</a>
+                <a href="mailto:majesticnortheasttour@gmail.com" className="text-stone-400 hover:text-gold-500 transition-colors">majesticnortheasttour@gmail.com</a>
               </div>
             </div>
 

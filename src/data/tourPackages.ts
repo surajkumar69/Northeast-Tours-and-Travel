@@ -61,7 +61,7 @@ const defaultNotes = [
 
 const defaultBookingInfo = {
   phone: '+917640076969',
-  email: 'majestcnortheasttour@gmail.com',
+  email: 'majesticnortheasttour@gmail.com',
   whatsappMessage: (pkgName: string, duration: string) => 
     `Hello, I am interested in booking the ${pkgName} (${duration}) package. Please provide more details.`
 };

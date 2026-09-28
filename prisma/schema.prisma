@@ -229,7 +229,7 @@ model SiteSettings {
   tagline      String   @default("The Soul of Incredible Northeast")
   phone        String   @default("+918787488801")
   whatsapp     String   @default("+918787488801")
-  email        String   @default("majestcnortheasttour@gmail.com")
+  email        String   @default("majesticnortheasttour@gmail.com")
   address      String?
   facebookUrl  String?
   instagramUrl String?

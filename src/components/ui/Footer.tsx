@@ -54,7 +54,7 @@ export function Footer() {
             </li>
             <li className="flex items-start">
               <Mail size={16} className="mr-3 mt-1 text-stone-500 shrink-0" />
-              <a href="mailto:majestcnortheasttour@gmail.com" className="hover:text-gold-500 transition-colors">majestcnortheasttour@gmail.com</a>
+              <a href="mailto:majesticnortheasttour@gmail.com" className="hover:text-gold-500 transition-colors">majesticnortheasttour@gmail.com</a>
             </li>
             <li className="flex items-start">
               <MapPin size={16} className="mr-3 mt-1 text-stone-500 shrink-0" />
