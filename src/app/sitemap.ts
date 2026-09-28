@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { routePages } from '@/data/routePages'
+import { seoPages } from '@/data/seoPages'
 import prisma from '@/lib/prisma'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -92,6 +93,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...destinationsMap,
     ...packagesMap,
     ...taxisMap,
-    ...temposMap
+    ...temposMap,
+    ...seoPages.map(page => ({
+      url: `${baseUrl}/${page.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    }))
   ]
 }
